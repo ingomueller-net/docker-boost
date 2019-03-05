@@ -12,11 +12,11 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 1 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 1
 
 RUN cd /tmp/ && \
-    wget https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.gz -O - \
+    wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz -O - \
         | tar -xz && \
-    cd /tmp/boost_1_67_0 && \
-    ./bootstrap.sh --prefix=/opt/boost-1.67.0 && \
+    cd /tmp/boost_1_69_0 && \
+    ./bootstrap.sh --prefix=/opt/boost-1.69.0 && \
     ./b2 && \
     ./b2 install && \
     cd / && \
-    rm -rf /tmp/boost_1_67_0
+    rm -rf /tmp/boost_1_69_0
