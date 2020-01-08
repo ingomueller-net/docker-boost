@@ -12,11 +12,12 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 1 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 1
 
 RUN cd /tmp/ && \
-    wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz -O - \
+    wget --progress=dot:giga -O - \
+        https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz \
         | tar -xz && \
-    cd /tmp/boost_1_70_0 && \
-    ./bootstrap.sh --prefix=/opt/boost-1.70.0 && \
-    ./b2 && \
-    ./b2 install && \
+    cd /tmp/boost_1_72_0 && \
+    ./bootstrap.sh --prefix=/opt/boost-1.72.0 && \
+    ./b2 numa=on define=BOOST_FIBERS_SPINLOCK_TTAS_ADAPTIVE_FUTEX -j$(nproc) && \
+    ./b2 numa=on install && \
     cd / && \
-    rm -rf /tmp/boost_1_70_0
+    rm -rf /tmp/boost_1_72_0
