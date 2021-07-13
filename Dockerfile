@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 MAINTAINER Ingo Müller <ingo.mueller@inf.ethz.ch>
 
 RUN apt-get update && \
